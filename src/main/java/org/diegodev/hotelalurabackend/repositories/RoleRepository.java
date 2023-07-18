@@ -1,10 +1,10 @@
-package org.diegogev.hotelalurabackend.repositories;
+package org.diegodev.hotelalurabackend.repositories;
 
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.andres.backend.usersapp.backendusersapp.models.entities.Role;
+import org.diegodev.hotelalurabackend.models.entities.Role;
 
 public interface RoleRepository
         extends CrudRepository<Role, Long> {

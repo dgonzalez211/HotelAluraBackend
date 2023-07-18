@@ -1,4 +1,4 @@
-package org.diegodev.hotelalurabackend.services;
+package org.diegodev.hotelalurabackend.services.impl;
 
 import org.diegodev.hotelalurabackend.repositories.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,11 +15,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class CustomUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsServiceImpl implements UserDetailsService {
 
     private final UserRepository repository;
 
-    public CustomUserDetailsService(UserRepository repository) {
+    public CustomUserDetailsServiceImpl(UserRepository repository) {
         this.repository = repository;
     }
 

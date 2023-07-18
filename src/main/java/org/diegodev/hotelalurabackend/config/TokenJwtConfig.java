@@ -1,4 +1,4 @@
-package org.diegodev.hotelalurabackend.auth;
+package org.diegodev.hotelalurabackend.config;
 
 import java.security.Key;
 

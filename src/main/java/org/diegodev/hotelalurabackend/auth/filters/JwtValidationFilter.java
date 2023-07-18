@@ -27,7 +27,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import static org.diegodev.hotelalurabackend.auth.TokenJwtConfig.*;
+import static org.diegodev.hotelalurabackend.config.TokenJwtConfig.*;
 
 public class JwtValidationFilter extends BasicAuthenticationFilter {
 

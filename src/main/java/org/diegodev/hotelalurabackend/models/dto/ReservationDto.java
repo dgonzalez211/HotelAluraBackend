@@ -7,7 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.diegodev.hotelalurabackend.models.enums.RoomTypes;
+import org.diegodev.hotelalurabackend.models.entities.User;
+import org.diegodev.hotelalurabackend.models.enums.ReservationStatusTypes;
 
 import java.time.LocalDate;
 
@@ -15,29 +16,25 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @Setter
-public class RoomDto {
+public class ReservationDto {
 
     private Long id;
 
     @NotNull
     @NotEmpty
-    private String name;
+    private LocalDate checkIn;
 
     @NotNull
     @NotEmpty
-    private RoomTypes type;
+    private LocalDate checkOut;
 
     @NotBlank
-    private String description;
+    private Integer guests;
+
+    @NotBlank
+    private String customerUsername;
 
     @NotNull
-    @NotEmpty
-    private LocalDate availableFrom;
-
-    @NotNull
-    @NotEmpty
-    private LocalDate availableTo;
-
-    @NotEmpty
-    private boolean available;
+    @NotBlank
+    private ReservationStatusTypes status;
 }

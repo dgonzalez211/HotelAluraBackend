@@ -1,31 +1,27 @@
 package org.diegodev.hotelalurabackend.models.request;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import org.diegodev.hotelalurabackend.models.enums.RoomTypes;
+import org.diegodev.hotelalurabackend.models.IReservation;
+import org.diegodev.hotelalurabackend.models.enums.ReservationStatusTypes;
+
+import java.time.LocalDate;
 
 @Getter
 @Setter
-public class RoomRequest implements IRoom {
+public class ReservationRequest implements IReservation {
 
-    @NotBlank(message = "Room name is mandatory")
-    private String name;
+    @NotBlank
+    private LocalDate checkIn;
+
+    @NotBlank
+    private LocalDate checkout;
 
     @NotEmpty
-    private RoomTypes type;
+    private Integer guests;
 
-    @NotBlank(message = "Description is mandatory")
-    private String description;
-
-    @NotBlank
-    private String availableFrom;
-
-    @NotBlank
-    private String availableTo;
-
-    private boolean available;
+    @NotEmpty
+    private ReservationStatusTypes status;
 }

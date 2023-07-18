@@ -2,46 +2,63 @@ package org.diegodev.hotelalurabackend.controllers;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.diegodev.hotelalurabackend.models.dto.RoomDto;
-import org.diegodev.hotelalurabackend.models.request.RoomRequest;
-import org.diegodev.hotelalurabackend.services.RoomService;
+import org.diegodev.hotelalurabackend.models.dto.ReservationDto;
+import org.diegodev.hotelalurabackend.models.entities.Reservation;
+import org.diegodev.hotelalurabackend.models.request.ReservationRequest;
+import org.diegodev.hotelalurabackend.services.ReservationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/rooms")
+@RequestMapping("/api/v1/reservations")
 @CrossOrigin(originPatterns = "*")
 @AllArgsConstructor
-public class RoomController extends BaseController {
+public class ReservationController extends BaseController {
 
-    private final RoomService service;
+    private final ReservationService service;
 
     @GetMapping
-    public List<RoomDto> list() {
+    public List<ReservationDto> list() {
         return service.findAll();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<RoomDto> show(@PathVariable("id") Long id) {
-        Optional<RoomDto> userOptional = service.findById(id);
+    @GetMapping("/user")
+    public ResponseEntity<List<ReservationDto>> userReservations(@RequestParam(name = "username") String username) {
+        List<ReservationDto> reservations = service.findByUser(username);
+        return ResponseEntity.ok(reservations);
+    }
 
-        if (userOptional.isPresent()) {
-            return ResponseEntity.ok(userOptional.orElseThrow());
+    @GetMapping("/{id}")
+    public ResponseEntity<ReservationDto> show(@PathVariable("id") Long id) {
+        Optional<ReservationDto> reservationOptional = service.findById(id);
+
+        if (reservationOptional.isPresent()) {
+            return ResponseEntity.ok(reservationOptional.orElseThrow());
         }
         return ResponseEntity.notFound().build();
     }
 
+    @PostMapping
+    public ResponseEntity<?> create(@Valid @RequestBody Reservation reservation, BindingResult result) {
+        if(result.hasErrors()){
+            return validation(result);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(reservation));
+    }
+
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@Valid @RequestBody RoomRequest room, BindingResult result, @PathVariable Long id) {
+    public ResponseEntity<?> update(@Valid @RequestBody ReservationRequest Reservation, BindingResult result, @PathVariable Long id) {
         if (result.hasErrors()) {
             return validation(result);
         }
-        Optional<RoomDto> o = service.update(room, id);
+        Optional<ReservationDto> o = service.update(Reservation, id);
 
         if (o.isPresent()) {
             return ResponseEntity.status(HttpStatus.CREATED).body(o.orElseThrow());
@@ -51,7 +68,7 @@ public class RoomController extends BaseController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> remove(@PathVariable Long id) {
-        Optional<RoomDto> o = service.findById(id);
+        Optional<ReservationDto> o = service.findById(id);
 
         if (o.isPresent()) {
             service.remove(id);

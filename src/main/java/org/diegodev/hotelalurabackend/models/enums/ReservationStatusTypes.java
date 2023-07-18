@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum RoomStatusTypes {
+public enum ReservationStatusTypes {
 
     ACTIVE("ACTIVE"),
     CANCELLED("CANCELLED"),

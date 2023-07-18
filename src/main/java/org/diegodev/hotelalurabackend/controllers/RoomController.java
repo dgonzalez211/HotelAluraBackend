@@ -2,9 +2,9 @@ package org.diegodev.hotelalurabackend.controllers;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.diegodev.hotelalurabackend.models.dto.UserDto;
-import org.diegodev.hotelalurabackend.models.request.UserRequest;
-import org.diegodev.hotelalurabackend.services.UserService;
+import org.diegodev.hotelalurabackend.models.dto.RoomDto;
+import org.diegodev.hotelalurabackend.models.request.RoomRequest;
+import org.diegodev.hotelalurabackend.services.RoomService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -14,21 +14,21 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/v1/rooms")
 @CrossOrigin(originPatterns = "*")
 @AllArgsConstructor
-public class UserController extends BaseController {
+public class RoomController extends BaseController {
 
-    private final UserService service;
+    private final RoomService service;
 
     @GetMapping
-    public List<UserDto> list() {
+    public List<RoomDto> list() {
         return service.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDto> show(@PathVariable("id") Long id) {
-        Optional<UserDto> userOptional = service.findById(id);
+    public ResponseEntity<RoomDto> show(@PathVariable("id") Long id) {
+        Optional<RoomDto> userOptional = service.findById(id);
 
         if (userOptional.isPresent()) {
             return ResponseEntity.ok(userOptional.orElseThrow());
@@ -37,11 +37,11 @@ public class UserController extends BaseController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@Valid @RequestBody UserRequest user, BindingResult result, @PathVariable Long id) {
+    public ResponseEntity<?> update(@Valid @RequestBody RoomRequest room, BindingResult result, @PathVariable Long id) {
         if (result.hasErrors()) {
             return validation(result);
         }
-        Optional<UserDto> o = service.update(user, id);
+        Optional<RoomDto> o = service.update(room, id);
 
         if (o.isPresent()) {
             return ResponseEntity.status(HttpStatus.CREATED).body(o.orElseThrow());
@@ -51,7 +51,7 @@ public class UserController extends BaseController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> remove(@PathVariable Long id) {
-        Optional<UserDto> o = service.findById(id);
+        Optional<RoomDto> o = service.findById(id);
 
         if (o.isPresent()) {
             service.remove(id);

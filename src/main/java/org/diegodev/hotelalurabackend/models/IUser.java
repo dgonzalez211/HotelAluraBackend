@@ -1,4 +1,4 @@
-package org.diegogev.hotelalurabackend.models;
+package org.diegodev.hotelalurabackend.models;
 
 public interface IUser {
     

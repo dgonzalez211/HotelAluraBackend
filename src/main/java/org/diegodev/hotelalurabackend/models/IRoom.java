@@ -1,4 +1,4 @@
-package org.diegodev.hotelalurabackend.models.request;
+package org.diegodev.hotelalurabackend.models;
 
 public interface IRoom {
 

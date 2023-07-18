@@ -1,4 +1,4 @@
-package org.diegogev.hotelalurabackend.auth;
+package org.diegodev.hotelalurabackend.auth;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

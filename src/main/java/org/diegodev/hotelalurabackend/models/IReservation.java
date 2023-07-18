@@ -1,6 +1,5 @@
 package org.diegodev.hotelalurabackend.models;
 
-public interface IRoom {
+public interface IReservation {
 
-    boolean isAvailable();
 }

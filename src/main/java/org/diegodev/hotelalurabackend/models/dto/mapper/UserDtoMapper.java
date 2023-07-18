@@ -1,30 +1,33 @@
 package org.diegodev.hotelalurabackend.models.dto.mapper;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.diegodev.hotelalurabackend.models.dto.UserDTO;
+import org.diegodev.hotelalurabackend.models.dto.UserDto;
 import org.diegodev.hotelalurabackend.models.entities.User;
+import org.diegodev.hotelalurabackend.models.enums.RoleTypes;
 
 @NoArgsConstructor
-public class UserDTOMapper {
+public class UserDtoMapper {
 
     private User user;
 
-    public static UserDTOMapper builder() {
-        return new UserDTOMapper();
+    public static UserDtoMapper builder() {
+        return new UserDtoMapper();
     }
 
-    public UserDTOMapper setUser(User user) {
+    public UserDtoMapper setUser(User user) {
         this.user = user;
         return this;
     }
 
-    public UserDTO build() {
+    public UserDto build() {
         if (user == null) {
             throw new RuntimeException("User entity in UserDTO is null!");
         }
-        boolean isAdmin = user.getRoles().stream().anyMatch(r -> "ROLE_ADMIN".equals(r.getName()));
-        return new UserDTO(this.user.getId(), user.getUsername(), user.getEmail(), isAdmin);
+        boolean isAdmin = user.getRoles().stream().anyMatch(r -> RoleTypes.ADMIN.getRoleName().equals(r.getName()));
+        return new UserDto(
+                this.user.getId(), user.getUsername(), user.getEmail(),
+                user.getPassword(), user.getFirstName(), user.getLastName(), user.getPhoneNumber(), isAdmin
+        );
     }
 
 

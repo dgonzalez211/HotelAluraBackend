@@ -1,33 +1,31 @@
 package org.diegodev.hotelalurabackend.models.dto.mapper;
 
 import lombok.NoArgsConstructor;
-import org.diegodev.hotelalurabackend.models.dto.RoomDto;
-import org.diegodev.hotelalurabackend.models.entities.Room;
-import org.diegodev.hotelalurabackend.models.entities.Room;
-import org.diegodev.hotelalurabackend.models.enums.RoleTypes;
+import org.diegodev.hotelalurabackend.models.dto.ReservationDto;
+import org.diegodev.hotelalurabackend.models.entities.Reservation;
 
 @NoArgsConstructor
-public class RoomDtoMapper {
+public class ReservationDtoMapper {
 
-    private Room room;
+    private Reservation reservation;
 
-    public static RoomDtoMapper builder() {
-        return new RoomDtoMapper();
+    public static ReservationDtoMapper builder() {
+        return new ReservationDtoMapper();
     }
 
-    public RoomDtoMapper setRoom(Room room) {
-        this.room = room;
+    public ReservationDtoMapper setReservation(Reservation reservation) {
+        this.reservation = reservation;
         return this;
     }
 
-    public RoomDto build() {
-        if (room == null) {
-            throw new RuntimeException("Room entity in RoomDTO is null!");
+    public ReservationDto build() {
+        if (reservation == null) {
+            throw new RuntimeException("Reservation entity in ReservationDTO is null!");
         }
 
-        return new RoomDto(
-                this.room.getId(), room.getName(), room.getType(),
-                room.getDescription(), room.getAvailableFrom(), room.getAvailableTo(), room.isAvailable()
+        return new ReservationDto(
+                reservation.getId(), reservation.getCheckIn(), reservation.getCheckOut(),
+                reservation.getGuests(), reservation.getUser().getUsername(), reservation.getStatus()
         );
     }
 

@@ -22,7 +22,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.diegodev.hotelalurabackend.auth.TokenJwtConfig.*;
+import static org.diegodev.hotelalurabackend.config.TokenJwtConfig.*;
 
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 

@@ -1,8 +1,8 @@
 package org.diegodev.hotelalurabackend.exception;
 
-public class UserAlreadyExistsException extends RuntimeException {
+public class UserAlreadyExistException extends RuntimeException {
 
-    public UserAlreadyExistsException(String message) {
+    public UserAlreadyExistException(String message) {
         super(message);
     }
 }

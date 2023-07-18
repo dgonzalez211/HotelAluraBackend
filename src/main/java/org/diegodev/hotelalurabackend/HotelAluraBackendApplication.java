@@ -1,4 +1,4 @@
-package org.diegogev.hotelalurabackend;
+package org.diegodev.hotelalurabackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

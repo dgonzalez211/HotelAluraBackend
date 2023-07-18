@@ -1,11 +1,11 @@
-package org.diegogev.hotelalurabackend.services;
+package org.diegodev.hotelalurabackend.services;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.andres.backend.usersapp.backendusersapp.models.dto.UserDto;
-import com.andres.backend.usersapp.backendusersapp.models.entities.User;
-import com.andres.backend.usersapp.backendusersapp.models.request.UserRequest;
+import org.diegodev.hotelalurabackend.models.dto.UserDto;
+import org.diegodev.hotelalurabackend.models.entities.User;
+import org.diegodev.hotelalurabackend.models.request.UserRequest;
 
 public interface UserService {
     
@@ -17,4 +17,7 @@ public interface UserService {
     Optional<UserDto> update(UserRequest user, Long id);
 
     void remove(Long id);
+
+    boolean emailExists(String email);
+    boolean usernameExists(String username);
 }
