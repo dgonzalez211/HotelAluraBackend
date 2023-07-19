@@ -5,16 +5,16 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum RoomTypes {
+public enum ReservationStatusType {
 
-    DELUXE("DELUXE"),
-    LUXURY("LUXURY"),
-    SUITE("SUITE");
+    ACTIVE("ACTIVE"),
+    CANCELLED("CANCELLED"),
+    MISSED("MISSED");
 
-    private final String roomTypeName;
+    private final String roomStatusName;
 
     @Override
     public String toString() {
-        return roomTypeName;
+        return roomStatusName;
     }
 }

@@ -4,7 +4,7 @@ package org.diegodev.hotelalurabackend.services.impl;
 import org.diegodev.hotelalurabackend.models.dto.ReservationDto;
 import org.diegodev.hotelalurabackend.models.dto.mapper.ReservationDtoMapper;
 import org.diegodev.hotelalurabackend.models.entities.Reservation;
-import org.diegodev.hotelalurabackend.models.enums.ReservationStatusTypes;
+import org.diegodev.hotelalurabackend.models.enums.ReservationStatusType;
 import org.diegodev.hotelalurabackend.models.request.ReservationRequest;
 import org.diegodev.hotelalurabackend.repositories.ReservationRepository;
 import org.diegodev.hotelalurabackend.services.ReservationService;
@@ -109,7 +109,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public boolean reservationExists(Long id) {
         Optional<Reservation> reservation = reservationRepository.findById(id);
-        return reservation.isPresent() && reservation.get().getStatus().equals(ReservationStatusTypes.ACTIVE);
+        return reservation.isPresent() && reservation.get().getStatus().equals(ReservationStatusType.ACTIVE);
     }
 
 }

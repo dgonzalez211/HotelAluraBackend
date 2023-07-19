@@ -7,7 +7,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.diegodev.hotelalurabackend.models.entities.User;
-import org.diegodev.hotelalurabackend.models.enums.RoleTypes;
+import org.diegodev.hotelalurabackend.models.enums.RoleType;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -60,7 +60,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .getUsername();
 
         Collection<? extends GrantedAuthority> roles = authResult.getAuthorities();
-        boolean isAdmin = roles.stream().anyMatch(r -> r.getAuthority().equals(RoleTypes.ADMIN.getRoleName()));
+        boolean isAdmin = roles.stream().anyMatch(r -> r.getAuthority().equals(RoleType.ADMIN.getRoleName()));
         Claims claims = Jwts.claims();
         claims.put("authorities", new ObjectMapper().writeValueAsString(roles));
         claims.put("isAdmin", isAdmin);

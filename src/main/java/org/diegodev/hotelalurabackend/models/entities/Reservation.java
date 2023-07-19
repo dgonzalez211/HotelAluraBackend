@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.*;
-import org.diegodev.hotelalurabackend.models.enums.ReservationStatusTypes;
+import org.diegodev.hotelalurabackend.models.enums.ReservationStatusType;
 
 import java.time.LocalDate;
 
@@ -14,6 +14,9 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "reservations")
 public class Reservation extends AuditableEntity {
+
+    @Column(name = "hotel_id", nullable = false)
+    private Long hotelId;
 
     @Column(name = "room_id", nullable = false)
     private Long roomId;
@@ -34,6 +37,6 @@ public class Reservation extends AuditableEntity {
 
     @Column
     @Enumerated(EnumType.STRING)
-    private ReservationStatusTypes status;
+    private ReservationStatusType status;
 
 }

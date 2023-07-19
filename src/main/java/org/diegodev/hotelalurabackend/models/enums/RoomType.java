@@ -5,16 +5,16 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum RoleTypes {
+public enum RoomType {
 
-    USER("USER"),
-    ADMIN("ADMIN"),
-    ANONYMOUS("ANONYMOUS");
+    DELUXE("DELUXE"),
+    LUXURY("LUXURY"),
+    SUITE("SUITE");
 
-    private final String roleName;
+    private final String roomTypeName;
 
     @Override
     public String toString() {
-        return roleName;
+        return roomTypeName;
     }
 }

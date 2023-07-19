@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.diegodev.hotelalurabackend.models.enums.RoleTypes;
+import org.diegodev.hotelalurabackend.models.enums.RoleType;
 import org.diegodev.hotelalurabackend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private List<Role> getRoles(IUser user) {
-        Optional<Role> ou = roleRepository.findByName(RoleTypes.USER.getRoleName());
+        Optional<Role> ou = roleRepository.findByName(RoleType.USER.getRoleName());
 
         List<Role> roles = new ArrayList<>();
         if (ou.isPresent()) {
@@ -90,7 +90,7 @@ public class UserServiceImpl implements UserService {
         }
 
         if (user.isAdmin()) {
-            Optional<Role> oa = roleRepository.findByName(RoleTypes.ADMIN.getRoleName());
+            Optional<Role> oa = roleRepository.findByName(RoleType.ADMIN.getRoleName());
             if (oa.isPresent()) {
                 roles.add(oa.orElseThrow());
             }

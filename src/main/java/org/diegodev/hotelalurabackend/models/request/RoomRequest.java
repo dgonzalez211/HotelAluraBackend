@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 import org.diegodev.hotelalurabackend.models.IRoom;
-import org.diegodev.hotelalurabackend.models.enums.RoomTypes;
+import org.diegodev.hotelalurabackend.models.enums.RoomType;
 
 @Getter
 @Setter
@@ -15,7 +15,7 @@ public class RoomRequest implements IRoom {
     private String name;
 
     @NotEmpty
-    private RoomTypes type;
+    private RoomType type;
 
     @NotBlank(message = "Description is mandatory")
     private String description;

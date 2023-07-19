@@ -2,7 +2,7 @@ package org.diegodev.hotelalurabackend.config;
 
 import org.diegodev.hotelalurabackend.auth.filters.JwtAuthenticationFilter;
 import org.diegodev.hotelalurabackend.auth.filters.JwtValidationFilter;
-import org.diegodev.hotelalurabackend.models.enums.RoleTypes;
+import org.diegodev.hotelalurabackend.models.enums.RoleType;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -53,22 +53,22 @@ public class SpringSecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/v1/auth/**").permitAll()
 
                         // User management
-                        .requestMatchers(HttpMethod.GET, "/api/v1/users").hasRole(RoleTypes.ADMIN.getRoleName())
-                        .requestMatchers(HttpMethod.GET, "/users/{id}").hasAnyRole(RoleTypes.ADMIN.getRoleName(), RoleTypes.USER.getRoleName())
-                        .requestMatchers(HttpMethod.PUT, "/users/{id}").hasAnyRole(RoleTypes.ADMIN.getRoleName(), RoleTypes.USER.getRoleName())
-                        .requestMatchers(HttpMethod.DELETE, "/users/{id}").hasRole(RoleTypes.ADMIN.getRoleName())
+                        .requestMatchers(HttpMethod.GET, "/api/v1/users").hasRole(RoleType.ADMIN.getRoleName())
+                        .requestMatchers(HttpMethod.GET, "/users/{id}").hasAnyRole(RoleType.ADMIN.getRoleName(), RoleType.USER.getRoleName())
+                        .requestMatchers(HttpMethod.PUT, "/users/{id}").hasAnyRole(RoleType.ADMIN.getRoleName(), RoleType.USER.getRoleName())
+                        .requestMatchers(HttpMethod.DELETE, "/users/{id}").hasRole(RoleType.ADMIN.getRoleName())
 
                         // Room management
-                        .requestMatchers(HttpMethod.GET, "/api/v1/rooms").hasAnyRole(RoleTypes.ADMIN.getRoleName(), RoleTypes.USER.getRoleName())
-                        .requestMatchers(HttpMethod.GET, "/rooms/{id}").hasAnyRole(RoleTypes.ADMIN.getRoleName(), RoleTypes.USER.getRoleName())
-                        .requestMatchers(HttpMethod.PUT, "/rooms/{id}").hasAnyRole(RoleTypes.ADMIN.getRoleName())
-                        .requestMatchers(HttpMethod.DELETE, "/rooms/{id}").hasRole(RoleTypes.ADMIN.getRoleName())
+                        .requestMatchers(HttpMethod.GET, "/api/v1/rooms").hasAnyRole(RoleType.ADMIN.getRoleName(), RoleType.USER.getRoleName())
+                        .requestMatchers(HttpMethod.GET, "/rooms/{id}").hasAnyRole(RoleType.ADMIN.getRoleName(), RoleType.USER.getRoleName())
+                        .requestMatchers(HttpMethod.PUT, "/rooms/{id}").hasAnyRole(RoleType.ADMIN.getRoleName())
+                        .requestMatchers(HttpMethod.DELETE, "/rooms/{id}").hasRole(RoleType.ADMIN.getRoleName())
 
                         // Reservation management
-                        .requestMatchers(HttpMethod.GET, "/api/v1/reservations").hasAnyRole(RoleTypes.ADMIN.getRoleName(), RoleTypes.USER.getRoleName())
-                        .requestMatchers(HttpMethod.GET, "/reservations/{id}").hasAnyRole(RoleTypes.ADMIN.getRoleName(), RoleTypes.USER.getRoleName())
-                        .requestMatchers(HttpMethod.PUT, "/reservations/{id}").hasAnyRole(RoleTypes.ADMIN.getRoleName(), RoleTypes.USER.getRoleName())
-                        .requestMatchers(HttpMethod.DELETE, "/reservations/{id}").hasAnyRole(RoleTypes.ADMIN.getRoleName())
+                        .requestMatchers(HttpMethod.GET, "/api/v1/reservations").hasAnyRole(RoleType.ADMIN.getRoleName(), RoleType.USER.getRoleName())
+                        .requestMatchers(HttpMethod.GET, "/reservations/{id}").hasAnyRole(RoleType.ADMIN.getRoleName(), RoleType.USER.getRoleName())
+                        .requestMatchers(HttpMethod.PUT, "/reservations/{id}").hasAnyRole(RoleType.ADMIN.getRoleName(), RoleType.USER.getRoleName())
+                        .requestMatchers(HttpMethod.DELETE, "/reservations/{id}").hasAnyRole(RoleType.ADMIN.getRoleName())
                         .anyRequest().authenticated())
                 .addFilter(getJwtAuthenticationFilter())
                 .addFilter(new JwtValidationFilter(authenticationConfiguration.getAuthenticationManager()))

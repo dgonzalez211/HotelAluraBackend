@@ -7,8 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.diegodev.hotelalurabackend.models.entities.User;
-import org.diegodev.hotelalurabackend.models.enums.ReservationStatusTypes;
+import org.diegodev.hotelalurabackend.models.enums.ReservationStatusType;
 
 import java.time.LocalDate;
 
@@ -36,5 +35,5 @@ public class ReservationDto {
 
     @NotNull
     @NotBlank
-    private ReservationStatusTypes status;
+    private ReservationStatusType status;
 }

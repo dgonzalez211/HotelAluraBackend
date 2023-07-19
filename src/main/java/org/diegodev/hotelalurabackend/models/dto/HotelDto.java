@@ -1,41 +1,39 @@
 package org.diegodev.hotelalurabackend.models.dto;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.diegodev.hotelalurabackend.models.enums.RoomType;
+import org.diegodev.hotelalurabackend.models.entities.Room;
 
-import java.time.LocalDate;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class RoomDto {
+public class HotelDto {
 
     private Long id;
 
     @NotNull
-    @NotEmpty
     private String name;
 
     @NotNull
-    @NotEmpty
-    private RoomType type;
-
-    @NotBlank
-    private String description;
+    private String email;
 
     @NotNull
-    @NotEmpty
-    private LocalDate availableFrom;
+    private String phoneNumber;
 
     @NotNull
+    private String telephoneNumber;
+
+    @NotNull
+    private String address;
+
     @NotEmpty
-    private LocalDate availableTo;
+    private List<Room> rooms;
 
 }

@@ -3,8 +3,6 @@ package org.diegodev.hotelalurabackend.models.dto.mapper;
 import lombok.NoArgsConstructor;
 import org.diegodev.hotelalurabackend.models.dto.RoomDto;
 import org.diegodev.hotelalurabackend.models.entities.Room;
-import org.diegodev.hotelalurabackend.models.entities.Room;
-import org.diegodev.hotelalurabackend.models.enums.RoleTypes;
 
 @NoArgsConstructor
 public class RoomDtoMapper {

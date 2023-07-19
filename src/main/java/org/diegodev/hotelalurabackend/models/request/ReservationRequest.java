@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 import org.diegodev.hotelalurabackend.models.IReservation;
-import org.diegodev.hotelalurabackend.models.enums.ReservationStatusTypes;
+import org.diegodev.hotelalurabackend.models.enums.ReservationStatusType;
 
 import java.time.LocalDate;
 
@@ -23,5 +23,5 @@ public class ReservationRequest implements IReservation {
     private Integer guests;
 
     @NotEmpty
-    private ReservationStatusTypes status;
+    private ReservationStatusType status;
 }
