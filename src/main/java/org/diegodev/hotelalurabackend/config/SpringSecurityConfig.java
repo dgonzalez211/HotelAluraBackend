@@ -69,6 +69,13 @@ public class SpringSecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/reservations/{id}").hasAnyRole(RoleType.ADMIN.getRoleName(), RoleType.USER.getRoleName())
                         .requestMatchers(HttpMethod.PUT, "/reservations/{id}").hasAnyRole(RoleType.ADMIN.getRoleName(), RoleType.USER.getRoleName())
                         .requestMatchers(HttpMethod.DELETE, "/reservations/{id}").hasAnyRole(RoleType.ADMIN.getRoleName())
+
+
+                        // Hotel management
+                        .requestMatchers(HttpMethod.GET, "/api/v1/hotels").hasAnyRole(RoleType.ADMIN.getRoleName(), RoleType.USER.getRoleName())
+                        .requestMatchers(HttpMethod.GET, "/hotels/{id}").hasAnyRole(RoleType.ADMIN.getRoleName(), RoleType.USER.getRoleName())
+                        .requestMatchers(HttpMethod.PUT, "/hotels/{id}").hasAnyRole(RoleType.ADMIN.getRoleName(), RoleType.USER.getRoleName())
+                        .requestMatchers(HttpMethod.DELETE, "/hotels/{id}").hasAnyRole(RoleType.ADMIN.getRoleName())
                         .anyRequest().authenticated())
                 .addFilter(getJwtAuthenticationFilter())
                 .addFilter(new JwtValidationFilter(authenticationConfiguration.getAuthenticationManager()))
