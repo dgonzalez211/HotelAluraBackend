@@ -2,6 +2,7 @@ package org.diegodev.hotelalurabackend.models.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.diegodev.hotelalurabackend.models.IReservation;
@@ -13,15 +14,24 @@ import java.time.LocalDate;
 @Setter
 public class ReservationRequest implements IReservation {
 
-    @NotBlank
+    @NotNull
     private LocalDate checkIn;
 
-    @NotBlank
-    private LocalDate checkout;
+    @NotNull
+    private LocalDate checkOut;
 
-    @NotEmpty
+    @NotNull
     private Integer guests;
 
-    @NotEmpty
+    @NotNull
     private ReservationStatusType status;
+
+    @NotNull
+    private Long userId;
+
+    @NotNull
+    private Long hotelId;
+
+    @NotNull
+    private Long roomId;
 }

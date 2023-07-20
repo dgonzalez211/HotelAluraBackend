@@ -3,7 +3,6 @@ package org.diegodev.hotelalurabackend.controllers;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.diegodev.hotelalurabackend.models.dto.ReservationDto;
-import org.diegodev.hotelalurabackend.models.entities.Reservation;
 import org.diegodev.hotelalurabackend.models.request.ReservationRequest;
 import org.diegodev.hotelalurabackend.services.ReservationService;
 import org.springframework.http.HttpStatus;
@@ -11,8 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.Collections;
+import java.security.InvalidParameterException;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,11 +44,16 @@ public class ReservationController extends BaseController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@Valid @RequestBody Reservation reservation, BindingResult result) {
-        if(result.hasErrors()){
+    public ResponseEntity<?> create(@Valid @RequestBody ReservationRequest reservationRequest, BindingResult result) {
+        if (result.hasErrors()) {
             return validation(result);
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(reservation));
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(service.save(reservationRequest));
+        } catch (InvalidParameterException exception) {
+            return ResponseEntity.badRequest().body(exception.getMessage());
+        }
+
     }
 
     @PutMapping("/{id}")

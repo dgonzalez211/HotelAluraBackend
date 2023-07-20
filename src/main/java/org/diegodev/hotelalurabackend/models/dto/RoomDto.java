@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.diegodev.hotelalurabackend.models.enums.RoomType;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -22,6 +23,10 @@ public class RoomDto {
     @NotNull
     @NotEmpty
     private String name;
+
+    @NotNull
+    @NotEmpty
+    private BigDecimal price;
 
     @NotNull
     @NotEmpty

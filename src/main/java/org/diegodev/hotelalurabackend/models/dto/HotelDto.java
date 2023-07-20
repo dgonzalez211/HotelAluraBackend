@@ -33,7 +33,12 @@ public class HotelDto {
     @NotNull
     private String address;
 
-    @NotEmpty
-    private List<Room> rooms;
+    @NotNull
+    private String location;
 
+    @NotNull
+    private Double rating;
+
+    @NotEmpty
+    private List<RoomDto> rooms;
 }

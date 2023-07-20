@@ -30,10 +30,14 @@ public class ReservationDto {
     @NotBlank
     private Integer guests;
 
-    @NotBlank
-    private String customerUsername;
-
     @NotNull
     @NotBlank
     private ReservationStatusType status;
+
+    @NotBlank
+    private Long roomId;
+
+    @NotNull
+    private Long hotelId;
+
 }

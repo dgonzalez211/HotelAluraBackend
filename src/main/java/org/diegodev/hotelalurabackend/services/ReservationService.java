@@ -18,6 +18,8 @@ public interface ReservationService {
 
     ReservationDto save(Reservation reservation);
 
+    ReservationDto save(ReservationRequest reservationRequest);
+
     void remove(Long id);
 
     Optional<ReservationDto> update(ReservationRequest user, Long id);

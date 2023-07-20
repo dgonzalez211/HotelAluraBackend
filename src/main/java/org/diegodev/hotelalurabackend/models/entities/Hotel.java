@@ -32,7 +32,18 @@ public class Hotel extends AuditableEntity {
 	@NotNull
 	private String address;
 
+	@Column
+	@NotNull
+	private String location;
+
+	@Column
+	@NotNull
+	private Double rating;
+
 	@OneToMany(mappedBy = "hotel", fetch = FetchType.EAGER)
 	private List<Room> rooms;
+
+	@OneToMany(mappedBy = "hotel", fetch = FetchType.EAGER)
+	private List<Reservation> reservations;
 
 }

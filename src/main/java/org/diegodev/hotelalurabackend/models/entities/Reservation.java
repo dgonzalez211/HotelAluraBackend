@@ -15,12 +15,6 @@ import java.time.LocalDate;
 @Table(name = "reservations")
 public class Reservation extends AuditableEntity {
 
-    @Column(name = "hotel_id", nullable = false)
-    private Long hotelId;
-
-    @Column(name = "room_id", nullable = false)
-    private Long roomId;
-
     @Column(name = "check_in", nullable = false)
     private LocalDate checkIn;
 
@@ -32,11 +26,17 @@ public class Reservation extends AuditableEntity {
     @Column(nullable = false)
     private Integer guests;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private User user;
-
     @Column
     @Enumerated(EnumType.STRING)
     private ReservationStatusType status;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Hotel hotel;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Room room;
 
 }
