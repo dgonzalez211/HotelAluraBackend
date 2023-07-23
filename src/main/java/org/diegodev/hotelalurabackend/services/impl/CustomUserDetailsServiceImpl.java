@@ -1,5 +1,6 @@
 package org.diegodev.hotelalurabackend.services.impl;
 
+import org.diegodev.hotelalurabackend.config.CustomUserDetails;
 import org.diegodev.hotelalurabackend.repositories.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -39,9 +40,10 @@ public class CustomUserDetailsServiceImpl implements UserDetailsService {
                 .map(r -> new SimpleGrantedAuthority(r.getName()))
                 .collect(Collectors.toList());
 
-        return new User(
+        return new CustomUserDetails(
                 user.getUsername(),
                 user.getPassword(),
+                o.get().getId(),
                 true,
                 true,
                 true,

@@ -35,9 +35,12 @@ public class ReservationDto {
     private ReservationStatusType status;
 
     @NotBlank
-    private Long roomId;
+    private RoomDto room;
 
     @NotNull
-    private Long hotelId;
+    private HotelDto hotel;
+
+    @NotNull
+    private Long userId;
 
 }

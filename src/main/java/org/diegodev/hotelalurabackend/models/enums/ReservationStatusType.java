@@ -9,12 +9,14 @@ public enum ReservationStatusType {
 
     ACTIVE("ACTIVE"),
     CANCELLED("CANCELLED"),
+    PENDING("PENDING"),
+    CONFIRMED("CONFIRMED"),
     MISSED("MISSED");
 
-    private final String roomStatusName;
+    private final String reservationStatusName;
 
     @Override
     public String toString() {
-        return roomStatusName;
+        return reservationStatusName;
     }
 }

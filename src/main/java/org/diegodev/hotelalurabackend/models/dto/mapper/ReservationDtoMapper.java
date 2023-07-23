@@ -25,9 +25,12 @@ public class ReservationDtoMapper {
             throw new RuntimeException("Reservation entity in ReservationDTO is null!");
         }
 
+        HotelDto hotelDto = HotelDtoMapper.builder().setHotel(reservation.getHotel()).build();
+        RoomDto roomDto = RoomDtoMapper.builder().setRoom(reservation.getRoom()).build();
         return new ReservationDto(
                 reservation.getId(), reservation.getCheckIn(), reservation.getCheckOut(),
-                reservation.getGuests(), reservation.getStatus(), reservation.getRoom().getId(), reservation.getHotel().getId()
+                reservation.getGuests(), reservation.getStatus(), roomDto,
+                hotelDto, reservation.getUser().getId()
         );
     }
 

@@ -6,6 +6,7 @@ import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.diegodev.hotelalurabackend.config.CustomUserDetails;
 import org.diegodev.hotelalurabackend.models.entities.User;
 import org.diegodev.hotelalurabackend.models.enums.RoleType;
 import org.springframework.http.HttpStatus;
@@ -36,12 +37,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException {
 
-        User user;
         String username = null;
         String password = null;
 
         try {
-            user = new ObjectMapper().readValue(request.getInputStream(), User.class);
+            User user = new ObjectMapper().readValue(request.getInputStream(), User.class);
             username = user.getUsername();
             password = user.getPassword();
 
@@ -56,8 +56,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
                                             Authentication authResult) throws IOException {
 
-        String username = ((org.springframework.security.core.userdetails.User) authResult.getPrincipal())
+        String username = ((CustomUserDetails) authResult.getPrincipal())
                 .getUsername();
+
+        Long userId = ((CustomUserDetails) authResult.getPrincipal())
+                .getUserId();
 
         Collection<? extends GrantedAuthority> roles = authResult.getAuthorities();
         boolean isAdmin = roles.stream().anyMatch(r -> r.getAuthority().equals(RoleType.ADMIN.getRoleName()));
@@ -67,7 +70,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         claims.put("username", username);
 
         String token = Jwts.builder()
-                .setClaims(claims)
+                .addClaims(claims)
                 .setSubject(username)
                 .signWith(SECRET_KEY)
                 .setIssuedAt(new Date())
@@ -78,8 +81,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         Map<String, Object> body = new HashMap<>();
         body.put("token", token);
-        body.put("message", String.format("Welcome %s, you have logged in with success!", username));
         body.put("username", username);
+        body.put("userId", userId);
+        body.put("authenticated", true);
         response.getWriter().write(new ObjectMapper().writeValueAsString(body));
         response.setStatus(HttpStatus.OK.value());
         response.setContentType("application/json");
@@ -90,6 +94,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                               AuthenticationException failed) throws IOException {
 
         Map<String, Object> body = new HashMap<>();
+        body.put("authenticated", false);
         body.put("message", "Auth failed, incorrect username or password!");
         body.put("error", failed.getMessage());
 
